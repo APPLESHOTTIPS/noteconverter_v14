@@ -3,6 +3,7 @@
  */
 import { Directive, ElementRef, HostBinding, HostListener, Input, } from '@angular/core';
 
+
 @Directive({
   selector: 'appTextField'
 })
@@ -22,6 +23,22 @@ export class TextFieldDirective {
 
   @HostListener('tap', ['$event'])
   @HostListener('click', ['$event'])
+  @HostListener('document:click', ['$event.target'])
+  onClick(targetElement: any) {
+    const clickedInside = this.elementRef.nativeElement.contains(targetElement);
+    if (!clickedInside) {
+      if (this.elementRef.nativeElement.tagName.toLowerCase() === 'input') {
+        this.elementRef.nativeElement.blur();
+      } else if (
+        this.elementRef.nativeElement.tagName.toLowerCase() === 'button' &&
+        this.elementRef.nativeElement.querySelector('input')
+      ) {
+        const inputField = this.elementRef.nativeElement.querySelector('input');
+        inputField.focus();
+        inputField.blur();
+      }
+    }
+  }
   onTextFieldClick(event: Event) {  
 
     if (
