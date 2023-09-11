@@ -41,9 +41,9 @@ export class ModalService {
       const dialogHeight = dialogElement.offsetHeight;
     
       const topPosition = Math.max(0, (viewportHeight - dialogHeight) / 2);
-      const leftPosition = Math.max(0, (viewportWidth - dialogWidth) / 2);
+      // const leftPosition = Math.max(0, (viewportWidth - dialogWidth) / 2);
     
-      return { top: topPosition + 'px', left: leftPosition + 'px' };
+      return { top: topPosition + 'px' };
     }
     
 
@@ -54,8 +54,6 @@ export class ModalService {
     
     return this.dialog.open(ProgressAlertComponent, {
       data :{'title': title,'message':message},
-      height: '98%',
-      width: '100vw',
       scrollStrategy: new NoopScrollStrategy()
     });
   }
@@ -100,8 +98,7 @@ export class ModalService {
     this.removeArrow();
     return this.dialog.open(component, {
       data :{'title': title,'message':message},
-      height: '98%',
-      width: '100vw',
+       height: '100%',
       // position: {
       //   top: '',
       //   left: 'calc(50% - 512px)',
@@ -124,6 +121,7 @@ export class ModalService {
       position: { ...dialog_postion, top: '100%' },
       panelClass: `custom-dialog-position`,
       data: { clickPosition, additionalInfo: `calc(${clickPosition.y}px - ${dialog_postion.top})`},
+      height: '100%',
       //scrollStrategy:  new NoopScrollStrategy()
     });
 
@@ -131,13 +129,14 @@ export class ModalService {
       setTimeout(() => {
       const customDialogPosition : HTMLElement = document.querySelector(".custom-dialog-position");
       let horizontalPosition = '';
-      if(dialog_postion.left) {
-        horizontalPosition = `left: ${dialog_postion.left}`;
-      } else if(dialog_postion.right) {
+      // if(dialog_postion.left) {
+      //   horizontalPosition = `left: ${dialog_postion.left}`;
+      // } 
+       if(dialog_postion.right) {
         horizontalPosition = `right: ${dialog_postion.right}`;
       }
 
-      customDialogPosition.style.cssText = `margin: 0!important; top: ${dialog_postion.top};${horizontalPosition};`
+      // customDialogPosition.style.cssText = `margin: 0!important; top: ${dialog_postion.top};${horizontalPosition};`
     
       const arrowsSize = 20;
       const common_arrow_style = `
@@ -199,11 +198,11 @@ export class ModalService {
     this.dialog.openDialogs.pop();
     return  this.dialog.open(component, {
       data :{'title': title,'message':message},
-      position: {
-        top: '',
-        left: 'calc(50% - 512px)',
+    //   position: {
+    //     top: '',
+    //     left: 'calc(50% - 512px)',
         
-    },
+    // },
     scrollStrategy: new NoopScrollStrategy()
     });
 
@@ -216,11 +215,11 @@ export class ModalService {
     this.removeArrow();
      this.dialog.open(component, {
       data :{'title': title,'message':message},
-      position: {
-        top: '',
-        left: 'calc(50% - 512px)',
+    //   position: {
+    //     top: '',
+    //     left: 'calc(50% - 512px)',
         
-    },
+    // },
     scrollStrategy: new NoopScrollStrategy()
     });
     timer(3000).subscribe(()=>{
@@ -242,7 +241,7 @@ export class ModalService {
     this.dialog.closeAll();
     this.dialog.open(component, {
       data : data,
-      height: '98%',
+      height: '100%',
       width: '100vw',
       scrollStrategy: new NoopScrollStrategy()
       
