@@ -54,8 +54,6 @@ export class ModalService {
     
     return this.dialog.open(ProgressAlertComponent, {
       data :{'title': title,'message':message},
-      height: '100%',
-      // width: '100vw',
       scrollStrategy: new NoopScrollStrategy()
     });
   }
@@ -101,7 +99,6 @@ export class ModalService {
     return this.dialog.open(component, {
       data :{'title': title,'message':message},
        height: '100%',
-      // width: '100vw',
       // position: {
       //   top: '',
       //   left: 'calc(50% - 512px)',
@@ -125,7 +122,6 @@ export class ModalService {
       panelClass: `custom-dialog-position`,
       data: { clickPosition, additionalInfo: `calc(${clickPosition.y}px - ${dialog_postion.top})`},
       height: '100%',
-      // width: '100vw',
       //scrollStrategy:  new NoopScrollStrategy()
     });
 
@@ -139,7 +135,7 @@ export class ModalService {
         horizontalPosition = `right: ${dialog_postion.right}`;
       }
 
-      customDialogPosition.style.cssText = `margin: 0!important; top: ${dialog_postion.top};${horizontalPosition};`
+      // customDialogPosition.style.cssText = `margin: 0!important; top: ${dialog_postion.top};${horizontalPosition};`
     
       const arrowsSize = 20;
       const common_arrow_style = `
