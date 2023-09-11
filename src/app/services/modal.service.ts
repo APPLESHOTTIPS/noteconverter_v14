@@ -78,10 +78,10 @@ export class ModalService {
       hasBackdrop: false,
       disableClose: true,
       minWidth: '100vw',
-      position: {
-        // left: leftPosition,
-        right: rightPosition,
-      },
+      // position: {
+      //   // left: leftPosition,
+      //   right: rightPosition,
+      // },
       scrollStrategy: new NoopScrollStrategy()
     });
    
@@ -129,14 +129,14 @@ export class ModalService {
       setTimeout(() => {
       const customDialogPosition : HTMLElement = document.querySelector(".custom-dialog-position");
       let horizontalPosition = '';
-      if(dialog_postion.left) {
-        horizontalPosition = `left: ${dialog_postion.left}`;
-      } 
+      // if(dialog_postion.left) {
+      //   horizontalPosition = `left: ${dialog_postion.left}`;
+      // } 
        if(dialog_postion.right) {
         horizontalPosition = `right: ${dialog_postion.right}`;
       }
 
-       customDialogPosition.style.cssText = `margin: 0!important; top: ${dialog_postion.top};${horizontalPosition};`
+       customDialogPosition.style.cssText = `margin: 0!important; right: ${dialog_postion.right};${horizontalPosition};`
     
       const arrowsSize = 20;
       const common_arrow_style = `
