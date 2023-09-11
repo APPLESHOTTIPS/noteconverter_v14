@@ -41,7 +41,7 @@ export class ModalService {
       const dialogHeight = dialogElement.offsetHeight;
     
       const topPosition = Math.max(0, (viewportHeight - dialogHeight) / 2);
-      // const leftPosition = Math.max(0, (viewportWidth - dialogWidth) / 2);
+      const leftPosition = Math.max(0, (viewportWidth - dialogWidth) / 2);
     
       return { top: topPosition + 'px' };
     }
@@ -79,7 +79,7 @@ export class ModalService {
       disableClose: true,
       minWidth: '100vw',
       position: {
-        left: leftPosition,
+        // left: leftPosition,
         right: rightPosition,
       },
       scrollStrategy: new NoopScrollStrategy()
@@ -129,14 +129,14 @@ export class ModalService {
       setTimeout(() => {
       const customDialogPosition : HTMLElement = document.querySelector(".custom-dialog-position");
       let horizontalPosition = '';
-      // if(dialog_postion.left) {
-      //   horizontalPosition = `left: ${dialog_postion.left}`;
-      // } 
+      if(dialog_postion.left) {
+        horizontalPosition = `left: ${dialog_postion.left}`;
+      } 
        if(dialog_postion.right) {
         horizontalPosition = `right: ${dialog_postion.right}`;
       }
 
-      // customDialogPosition.style.cssText = `margin: 0!important; top: ${dialog_postion.top};${horizontalPosition};`
+       customDialogPosition.style.cssText = `margin: 0!important; top: ${dialog_postion.top};${horizontalPosition};`
     
       const arrowsSize = 20;
       const common_arrow_style = `
@@ -198,11 +198,11 @@ export class ModalService {
     this.dialog.openDialogs.pop();
     return  this.dialog.open(component, {
       data :{'title': title,'message':message},
-    //   position: {
-    //     top: '',
-    //     left: 'calc(50% - 512px)',
+      position: {
+        top: '',
+        left: 'calc(50% - 512px)',
         
-    // },
+    },
     scrollStrategy: new NoopScrollStrategy()
     });
 
@@ -215,11 +215,11 @@ export class ModalService {
     this.removeArrow();
      this.dialog.open(component, {
       data :{'title': title,'message':message},
-    //   position: {
-    //     top: '',
-    //     left: 'calc(50% - 512px)',
+      position: {
+        top: '',
+        left: 'calc(50% - 512px)',
         
-    // },
+    },
     scrollStrategy: new NoopScrollStrategy()
     });
     timer(3000).subscribe(()=>{
